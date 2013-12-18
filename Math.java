@@ -12,8 +12,8 @@ public class Math {
 			Random rand = new Random();
 			Integer min = 0;
 			Integer max = 10;
-			Integer randomNum[];
-			Integer randomOp[];
+			Integer randomNum[] = null;
+			Integer randomOp[] = null;
 			String string = null;	
 			Integer numberCorrect = 0;											//number correct counter
 			

@@ -2,8 +2,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Number {
+/*Original, console application
+ * 
+ * 
 	private static Scanner input;
-
 	public static void main(String[] args) {
 		Random rand = new Random();
 		Integer min = 0;
@@ -32,5 +34,7 @@ public class Number {
 		}
 		while (randomNum1 + randomNum2 == Integer.parseInt(string));
 	}
-
+*	
+*
+*/
 }

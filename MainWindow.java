@@ -16,6 +16,10 @@ public class MainWindow extends Frame{
 				else{
 					answer.setText(String.valueOf(e.getKeyChar()));					
 				}
+				if(mathlete.VerifyQuestion()){
+					mathlete.NewQuestion();	
+					answer.setText("");
+				}
 			}
 			else{
 				if (e.getKeyCode() == 27){
@@ -27,17 +31,26 @@ public class MainWindow extends Frame{
 	
 	Label question = new Label();
 	Label answer = new Label();
-
+	Mathlete mathlete = new Mathlete(question, answer);
+	
 	public MainWindow(){
-		this.setLayout(new GridLayout(1, 2));
-		
-		this.add(question);
-		this.add(answer);
-		
 		this.addKeyListener(new KeyboardEntry());
 		
-		new Mathlete(question, answer);
-		
+		this.setLayout(new GridLayout(1, 2));
+		this.add(question);
+		this.add(answer);
+	
+		Boolean myBoolean = Boolean.TRUE;
+		while(myBoolean){
+			mathlete.NewQuestion();
+			if(answer.getText() != ""){
+				myBoolean = mathlete.VerifyQuestion();
+			}
+			else{
+				myBoolean = Boolean.FALSE;
+			}
+		}
+
 		this.setTitle("Mathlete v1.0.0");
 		this.setSize(225,150);
 		this.setVisible(true);

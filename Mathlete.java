@@ -1,47 +1,36 @@
-import java.awt.Label;
-import java.awt.event.*;
+import java.awt.*;
 
 public class Mathlete {
-	/*public class KeyboardEntry extends KeyAdapter{
-		public void keyPressed(KeyEvent e){
-			if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9'){
-				if (answer.getText() != ""){
-					answer.setText(answer.getText() + String.valueOf(e.getKeyChar()));
-				}
-				else{
-					answer.setText(String.valueOf(e.getKeyChar()));					
-				}
-			}
-			else{
-				if (e.getKeyCode() == 27){
-					answer.setText("");
-				}
-			}
-		}
-	}*/
-	
-	
+	Label question;
+	Label answer;
+	int minimum = 0;
+	int maximum = 10;
+	Integer randomNumber1 = null;
+	Integer randomNumber2 = null;
+		
 	public Mathlete(Label question, Label answer) {
 		StartGame(question, answer);
 	}
 
-	private void StartGame(Label question, Label answer){
-		int minimum = 0;
-		int maximum = 10;
-		Integer randomNumber1 = null;
-		Integer randomNumber2 = null;
-		do{
-			randomNumber1 = Generator.RandomInteger(minimum, maximum);
-			randomNumber2 = Generator.RandomInteger(minimum, maximum);
-			
-			question.setText(randomNumber1 + " + " + randomNumber2 + " = ");
+	private void StartGame(Label QuestionLabel, Label AnswerLabel){
+		question = QuestionLabel;
+		answer = AnswerLabel;
+		/*Generate dynamic array with questions to be asked, difficulty selected before hand*/
+	}
+	
+	public void NewQuestion(){
+		randomNumber1 = Generator.RandomInteger(minimum, maximum);
+		randomNumber2 = Generator.RandomInteger(minimum, maximum);
 
-/*
-			if(randomNumber1 + randomNumber2 == Integer.parseInt(string)) {
-				System.out.println("Correct!    " + numberCorrect);
-			}
-*/
+		question.setText(randomNumber1 + " + " + randomNumber2 + " = ");
+	}
+	
+	public boolean VerifyQuestion(){
+		if(randomNumber1 + randomNumber2 == Integer.parseInt(answer.getText())) {
+			return Boolean.TRUE;
 		}
-		while (randomNumber1 + randomNumber2 == Integer.parseInt("0"));
+		else{
+			return Boolean.FALSE;
+		}
 	}
 }

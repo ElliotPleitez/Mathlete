@@ -8,9 +8,8 @@ public class Generator {
 		return value;
 	}
 	
-	@SuppressWarnings("null")
 	public static Integer[] RandomInteger(Integer minimum, Integer maximum, Integer length){
-		Integer value[] = null;
+		Integer[] value = new Integer[length];
 		for(Integer i=0; i < length; i++) {
 			value[i] = RandomInteger(minimum, maximum);
 		}
@@ -23,9 +22,8 @@ public class Generator {
 		return value;
 	}
 	
-	@SuppressWarnings("null")
 	public static String[] RandomOperator(Integer length){
-		String value[] = null;
+		String[] value = new String[length];
 		for(Integer i=0; i < length; i++) {
 			value[i] = RandomOperator();
 		}

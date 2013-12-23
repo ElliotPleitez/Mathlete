@@ -2,16 +2,17 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Mathlete {
-	Label question;
-	Label answer;
-	int minimum = 0;
-	int maximum = 10;
-	Integer randomNumber1 = null;
-	Integer randomNumber2 = null;
+	Label questionLabel;
+	Label answerLabel;
+	Challenger challenger;
+	//ScoreKeeper will assign these in the future
+		int minimum = 0;
+		int maximum = 10;
+	//ScoreKeeper will assign these in the future
 	
 	public Mathlete(MainWindow gameScreen) {
-		question = gameScreen.question;
-		answer = gameScreen.answer;
+		questionLabel = gameScreen.question;
+		answerLabel = gameScreen.answer;
 		
 		gameScreen.addKeyListener(new KeyboardEntry());
 		
@@ -21,52 +22,47 @@ public class Mathlete {
 	public class KeyboardEntry extends KeyAdapter{		
 		public void keyPressed(KeyEvent e){
 			if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9'){
-				if (answer.getText() != ""){
-					answer.setText(answer.getText() + String.valueOf(e.getKeyChar()));
+				if (answerLabel.getText() != ""){
+					answerLabel.setText(answerLabel.getText() + String.valueOf(e.getKeyChar()));
 				}
 				else{
-					answer.setText(String.valueOf(e.getKeyChar()));					
+					answerLabel.setText(String.valueOf(e.getKeyChar()));
 				}
-				if(VerifyQuestion()){
-					NewQuestion();	
-					answer.setText("");
+				
+				String test1 = answerLabel.getText();
+				String test2 = challenger.Answer();
+				System.out.println(answerLabel.getText());
+				System.out.println(challenger.Answer());
+				
+				if(answerLabel.getText() == challenger.Answer()){
+					answerLabel.setText("");
+					questionLabel.setText(challenger.Question());
 				}
 			}
 			else{
 				if (e.getKeyCode() == 27){
-					answer.setText("");
+					answerLabel.setText("");
 				}
 			}
 		}
 	}
 
-	private void StartGame(){		
-		Boolean myBoolean = Boolean.TRUE;
-		while(myBoolean){
-			NewQuestion();
-			if(answer.getText() != ""){
-				myBoolean = VerifyQuestion();
+	private void StartGame(){
+		challenger = new Challenger(0, 10, Operator.Addition, Type.Integer);
+		questionLabel.setText(challenger.Question());
+
+		//Boolean myBoolean = Boolean.TRUE;
+		/*while(myBoolean){
+			if(answerLabel.getText() != ""){
+				myBoolean = Boolean.TRUE;
+				if(answerLabel.getText() == challenger.Answer()){
+					myBoolean = Boolean.TRUE;
+				}
 			}
 			else{
 				myBoolean = Boolean.FALSE;
 			}
-		}
+		}*/
 		/*Generate dynamic array with questions to be asked, difficulty selected before hand*/
-	}
-	
-	public void NewQuestion(){
-		randomNumber1 = Generator.RandomInteger(minimum, maximum);
-		randomNumber2 = Generator.RandomInteger(minimum, maximum);
-
-		question.setText(randomNumber1 + " + " + randomNumber2 + " = ");
-	}
-	
-	public boolean VerifyQuestion(){
-		if(randomNumber1 + randomNumber2 == Integer.parseInt(answer.getText())) {
-			return Boolean.TRUE;
-		}
-		else{
-			return Boolean.FALSE;
-		}
 	}
 }

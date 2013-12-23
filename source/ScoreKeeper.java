@@ -1,10 +1,12 @@
 
 public class ScoreKeeper {
-	public static Integer numberCorrect = 0;
-	public static Integer numberIncorrect = 0;
-	public static Integer questions = 0;
+	Integer level = null;
+	Integer correct = null;
+	Integer incorrect = null;
+	Integer questions = null;
 	
-	public static Integer GetScore(){
-		return ( numberCorrect / questions ) * 100;
+	public Integer GetScore(){
+		
+		return ( correct / questions ) * 100;
 	}
 }

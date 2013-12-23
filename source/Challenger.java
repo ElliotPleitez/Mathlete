@@ -50,14 +50,14 @@ public class Challenger {
 		return value;
 	}
 	
-	public String Answer(){
-		String value = null;
+	public Integer Answer(){
+		Integer value = null;
 		switch(type){
 		case Integer:
-			value = Integer.toString(NumberOne[0] + NumberTwo[0]);
+			value = NumberOne[0] + NumberTwo[0];
 			break;
 		default:
-			value = "";
+			value = null;
 			System.out.println("Answer not yet available");
 			break;
 		}

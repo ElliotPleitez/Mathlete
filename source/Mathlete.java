@@ -28,14 +28,10 @@ public class Mathlete {
 				else{
 					answerLabel.setText(String.valueOf(e.getKeyChar()));
 				}
-				
-				String test1 = answerLabel.getText();
-				String test2 = challenger.Answer();
-				System.out.println(answerLabel.getText());
-				System.out.println(challenger.Answer());
-				
-				if(answerLabel.getText() == challenger.Answer()){
+				if(Integer.valueOf(answerLabel.getText()) == challenger.Answer()){
 					answerLabel.setText("");
+					challenger = null;
+					challenger = new Challenger(0, 10, Operator.Addition, Type.Integer);
 					questionLabel.setText(challenger.Question());
 				}
 			}
